@@ -10,6 +10,24 @@
     <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/clipboard.js/2.0.0/clipboard.js"></script>
     <script type="text/javascript">
+    function switchTo() {
+        // var url = document.getElementById('url');
+        var url = $("#url").val();
+        console.log('newUrl')
+        console.log(url)
+        // window.location.href=url;
+        window.open('https://aweme.snssdk.com/aweme/v1/play/?video_id=2f21e6374b61421eb5aa843222782857');
+    }
+        function dowloadVideo() {
+        // var url = document.getElementById('url');
+        var url = $("#url").val();
+        console.log('newUrl')
+        console.log(url)
+        // window.location.href=url;
+        window.open('https://aweme.snssdk.com/aweme/v1/play/?video_id=2f21e6374b61421eb5aa843222782857');
+    }
+    </script>
+    <script type="text/javascript">
     function jiexi() {
         var url = document.getElementById('baseUrl');
         console.log(url.value)
@@ -20,11 +38,13 @@
             var newUrl = data.result.realUrl
             var cover = data.result.coverUrl
             var title = data.result.title
+            // alert(data.result.realUrl)
             $("#url").val(data.result.realUrl);
-            $("#title").val(title);
-            $("#coverinputUrl").val(cover);
-            $("#realUrl").attr("href", newUrl);
-            $("#coverUrl").attr("href", cover);
+            $("#result").val(title);
+
+            $("#“downloadVideo”").attr("href", newUrl);
+            $("#“downloadVideo”").attr("download", "name");
+            $("#“downloadCover”").attr("href", cover);
         });
     }
     </script>
@@ -66,30 +86,17 @@
                     </div>
                 </div>
                 <div class="input-group input-group-lg" style="margin-bottom: 10px;">
-                    <input name="realUrl" id="title" type="text" class="form-control link-input" placeholder="视频标题将出现在这里">
+                    <input name="realUrl" id="baseUrl" type="text" class="form-control link-input" placeholder="请将APP里复制的视频链接粘贴到这里">
                     <div class="input-group-btn">
-                        <a href="" id='realUrl' download="" target="_blank">
-                            <!-- <button class="btn btn-default" id="downloadV" onclick="dowloadVideo()">下载视频</button> -->
-                            <button class="btn btn-default" id="downloadV" style="margin-left: 10px;">下载视频</button>
-                        </a>
+                        <button class="btn btn-default" id="downloadV" onclick="dowloadVideo()">下载视频</button>
                     </div>
                 </div>
-                <div class="input-group input-group-lg" style="margin-bottom: 10px;">
-                    <input name="CoverUrl" id="coverinputUrl" type="text" class="form-control link-input" placeholder="封面地址将出现在这里">
-                    <div class="input-group-btn">
-                        <a href="" id='coverUrl' download="" target="_blank">
-                            <button class="btn btn-default" id="downloadV" style="margin-left: 10px;">下载封面</button>
-                        </a>
-                    </div>
-                </div>
+                <!-- <input name="result" id="result" type="text" class="form-control link-input" placeholder="等待中..."> -->
+                <!--       <a href="" id=“downloadVideo” target="_blank" download="video" class="btn btn-default">下载视频</a>
+      <a href="" id=“downloadCover” target="_blank" download="cover" class="btn btn-default">下载封面</a> -->
             </div>
         </div>
     </div>
-    <div style="text-align: center; margin-top: 20px;">
-    <p style="margin-bottom: 5px;">自媒体交流、技术支持QQ群: 471410943</p>
-    <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=19f91bfddce12b7895a6c0784f06c7adc0b5bf393e174a9d07de9c6b562db501"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="软件反馈群" title="软件反馈群"></a>
-    </div>
-    
 </body>
 
 </html>

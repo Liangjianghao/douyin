@@ -10,6 +10,6 @@ c.execute('''CREATE TABLE douyin
        realUrl        TEXT,
        title         TEXT,
        imgUrl         TEXT,
-       videoNumber     INT );''')
+       nowtime     TEXT );''')
 conn.commit()
 conn.close()

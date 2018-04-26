@@ -18,6 +18,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+@app.route('/getUseTime',methods=['GET'])
 
 @app.route('/getRealUrl',methods=['GET'])
 def getRealUr():
@@ -82,6 +83,29 @@ def getRealUr():
         conn.close()
     else:
         print('解析成功')
+@app.route('/getDouyinPLTime/<jiqima>',methods=['GET'])
+def getDouyinPLTime(jiqima):
+    return selectUseTime(jiqima)
+def selectUseTime(jiqima):
+    print(jiqima)
+    conn = sqlite3.connect('User.db')
+    c = conn.cursor()
+    selectJiqima = c.execute("SELECT * from douyinPL where jiqima=%s"%jiqima)
+    selectJiqimaData = selectJiqima.fetchall()
+    print(len(selectJiqimaData))
+    tomorrowTime = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')#明天
+    if len(selectJiqimaData)==0:
+        print('插入一天试用期')
+        insertStr="INSERT INTO douyinPL (jiqima,useTime,status) VALUES ('%s', '%s','试用')"%(jiqima,tomorrowTime)
+        print(insertStr)
+        insertTime=c.execute("INSERT INTO douyinPL (jiqima,useTime,status) VALUES ('%s', '%s','试用')"%(jiqima,tomorrowTime))
+        conn.commit()
+        conn.close()
+        return tomorrowTime
+    else:
+        print('取得时间')
+        conn.close()
+        return selectJiqimaData[0][1]
 
 if __name__ == '__main__':
 
